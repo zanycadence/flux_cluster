@@ -1,0 +1,61 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nvme-nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.5.137
+  share: /srv/nfs/nvme
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: sda-nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.5.137
+  share: /srv/nfs/sda
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: sdb-nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.5.137
+  share: /srv/nfs/sdb
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: sdc-nfs-csi
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.5.137
+  share: /srv/nfs/sdc
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
